@@ -1,0 +1,8 @@
+Cuando Cambiamos de equipo debemos:
+- Reemplazar los permisos de las subcarpetas de inetpub con los de inetpub.
+- Establcer como propietario de los dos ficheros de APP_DATA al usuario actual del equipo
+- Cambiar la cadena de conection de IIS (dentro de la aplicacion qamodel) por:
+
+	data source=AVL4CDCCPEREZ;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|aspnetdb.mdf;User Instance=true
+	data source=.\SQLEXPRESS;Integrated Security=SSPI;AttachDBFilename=|DataDirectory|\aspnetdb.mdf;User Instance=true" providerName="System.Data.SqlClient"
+	
