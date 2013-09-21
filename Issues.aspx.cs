@@ -90,4 +90,14 @@ public partial class Issues : System.Web.UI.Page
     {
         Response.Redirect("Applications.aspx");
     }
+
+    protected void AddIssueButton_Click(object sender, EventArgs e)
+    {
+        ModalAddIssue.Visible = true;
+    }
+
+    protected void ModalAddIssueClose_Click(object sender, EventArgs e)
+    {
+        ModalAddIssue.Visible = false;        
+    }
 }

@@ -80,6 +80,18 @@
     <p>
         List of issues
     </p>
+
+    <!-- Panel under Construction Add Release -->
+    <!-- Aqui mostramos una capa para añadir los errores -->
+    <asp:LinkButton runat="server" id="AddIssueButton" class="AddButton" OnClick="AddIssueButton_Click" CausesValidation="false" Visible="true" >&nbsp;Add&nbsp;</asp:LinkButton>
+    <asp:Panel runat="server" id="ModalAddIssue" class="modalDialogUnderConstruction" Visible="false">
+	    <div>
+            <asp:LinkButton runat="server" id="ModalAddIssueClose" class="close" OnClick="ModalAddIssueClose_Click" CausesValidation="false">X</asp:LinkButton>
+            <p><img src="images/under_construction_transparentBG_0.png" /></p>
+        </div>
+    </asp:Panel>
+    <!-- Fin Panel under Construction -->
+
     <p>Search:
         <asp:TextBox ID="filterTextBox" runat="server"></asp:TextBox>
     </p>
@@ -90,38 +102,38 @@
         </asp:SqlDataSource>        
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" 
             DataKeyNames="ErrorId" DataSourceID="SqlDataSource2" Width="100%" 
-            CssClass="gridView" 
+            CssClass="gridView" AllowSorting="true"
             onselectedindexchanged="GridView1_SelectedIndexChanged" 
             ondatabound="GridView1_DataBound">
             <Columns>
                 <asp:BoundField DataField="ErrorId" HeaderText="Id" 
                     SortExpression="ErrorId" ItemStyle-CssClass="boundfield-hidden" HeaderStyle-CssClass="boundfield-hidden" />                    
                 <asp:BoundField DataField="ErrorCT" HeaderText="CT" 
-                    SortExpression="ErrorCT" />
+                    SortExpression="ErrorCT" ItemStyle-Width="70px"/>
                 <asp:BoundField DataField="ErrorSpiraId" HeaderText="Spira Id" 
-                    SortExpression="ErrorSpiraId" />
+                    SortExpression="ErrorSpiraId" ItemStyle-Width="70px"/>
                 <asp:BoundField DataField="ErrorName" HeaderText="Name" 
-                    SortExpression="ErrorName" />
+                    SortExpression="ErrorName" ItemStyle-Width="150px" />
                 <asp:BoundField DataField="ErrorDescription" HeaderText="Description" 
-                    SortExpression="ErrorDescription" />
+                    SortExpression="ErrorDescription" ItemStyle-Width="200px" />
                 <asp:BoundField DataField="ErrorType" HeaderText="Type" 
-                    SortExpression="ErrorType" />
+                    SortExpression="ErrorType" ItemStyle-Width="50px" />
                 <asp:BoundField DataField="ErrorPriority" HeaderText="Priority" 
-                    SortExpression="ErrorPriority" />
+                    SortExpression="ErrorPriority" ItemStyle-Width="50px" />
                 <asp:BoundField DataField="State" HeaderText="State" 
-                    SortExpression="State" />
+                    SortExpression="State" ItemStyle-Width="50px" />
                 <asp:BoundField DataField="ErrorFoundRelease" HeaderText="Found in" 
-                    SortExpression="ErrorFoundRelease" />
+                    SortExpression="ErrorFoundRelease" ItemStyle-CssClass="boundfield-hidden" HeaderStyle-CssClass="boundfield-hidden" />
                 <asp:BoundField DataField="ErrorResolvedRelease" HeaderText="Resolved in" 
-                    SortExpression="ErrorResolvedRelease" />
+                    SortExpression="ErrorResolvedRelease" ItemStyle-CssClass="boundfield-hidden" HeaderStyle-CssClass="boundfield-hidden" />
                 <asp:BoundField DataField="ErrorFoundDate" DataFormatString="{0:dd/MM/yyyy}" HeaderText="Found date" 
-                    SortExpression="ErrorFoundDate" />
+                    SortExpression="ErrorFoundDate" ItemStyle-Width="70px" />
                 <asp:BoundField DataField="ErrorResolvedDate" DataFormatString="{0:dd/MM/yyyy}" HeaderText="Resolved date" 
-                    SortExpression="ErrorResolvedDate" />
+                    SortExpression="ErrorResolvedDate" ItemStyle-CssClass="boundfield-hidden" HeaderStyle-CssClass="boundfield-hidden" />
                 <asp:BoundField DataField="ErrorAffectedClients" HeaderText="Affected clients" 
-                    SortExpression="ErrorAffectedClients" />
+                    SortExpression="ErrorAffectedClients" ItemStyle-Width="60px" />
                 <asp:CommandField ShowSelectButton="true" ButtonType="Link" Visible="true"
-                    SelectText="View" ItemStyle-HorizontalAlign="Center" />                  
+                    SelectText="<img src='images/Ok.png' />" ItemStyle-Width="30px" ItemStyle-HorizontalAlign="Center" />                  
             </Columns>
             <HeaderStyle BackColor="#546E96" ForeColor="White" />
         </asp:GridView>        

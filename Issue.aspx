@@ -19,7 +19,16 @@
     </p>    
     <hr />
 
-    <asp:linkbutton id="btEdit" runat="server" class="EditButton" onclick="btEdit_Click">&nbsp;Edit&nbsp;</asp:linkbutton>
+    <asp:LinkButton id="EditButton" runat="server" class="EditButton" Text="&nbsp;Edit&nbsp;" CommandName="Edit" onclick="EditButton_Click"/>
+    <!-- Panel under Construction aqui no iria un panel, sino que se habilitaria
+        la edicion del formulario -->
+    <asp:Panel runat="server" id="ModalEditIssue" class="modalDialogUnderConstruction" Visible="false">
+	    <div>
+            <asp:LinkButton runat="server" id="CloseButton" class="close" OnClick="CloseButton_Click" CausesValidation="false">X</asp:LinkButton>
+            <p><img src="images/under_construction_transparentBG_0.png" /></p>
+        </div>
+    </asp:Panel>
+    <!-- Fin Panel under Construction -->
     
     <table> 
         <tr>
@@ -107,7 +116,7 @@
                 <table style="background-color:Gray; color:White; width: 920px;">
                     <tr>
                         <td style="width: 842px">
-                            &nbsp;<span Class="textSpanBoldUnderline">Assignment history</span>
+                            &nbsp;<span Class="textSpanBoldUnderline">State/Assignment history</span>
                         </td>
                         <td style="vertical-align:middle; text-align:center">
                             <asp:Button id="btViewAssignmentHistory" runat="server" BorderStyle="none" 
@@ -130,17 +139,17 @@
                             <asp:BoundField DataField="StateId" HeaderText="Id" 
                                 SortExpression="StateId" ItemStyle-CssClass="boundfield-hidden" HeaderStyle-CssClass="boundfield-hidden" />
                             <asp:BoundField DataField="AssignedTo" HeaderText="Assigned To" 
-                                SortExpression="AssignedTo" />
+                                SortExpression="AssignedTo" ItemStyle-Width="70px" />
                             <asp:BoundField DataField="AssignmentDate" DataFormatString="{0: dd/MM/yyyy}" HeaderText="Assignment Date" 
-                                SortExpression="AssignmentDate" />
+                                SortExpression="AssignmentDate" ItemStyle-Width="70px" />
                             <asp:BoundField DataField="Comments" HeaderText="Comments" 
-                                SortExpression="Comments" />
+                                SortExpression="Comments" ItemStyle-Width="450px" />
                             <asp:BoundField DataField="State" HeaderText="State" 
-                                SortExpression="State" />
+                                SortExpression="State" ItemStyle-Width="50px" />
                             <asp:BoundField DataField="ResolutionType" HeaderText="Resolution Type" 
-                                SortExpression="ResolutionType" />
+                                SortExpression="ResolutionType" ItemStyle-CssClass="boundfield-hidden" HeaderStyle-CssClass="boundfield-hidden" />
                             <asp:BoundField DataField="Resolution" HeaderText="Resolution" 
-                                SortExpression="Resolution" />
+                                SortExpression="Resolution" ItemStyle-CssClass="boundfield-hidden" HeaderStyle-CssClass="boundfield-hidden" />
                             <asp:BoundField DataField="UserId" HeaderText="User Id" 
                                 SortExpression="UserId" />
                         </Columns>

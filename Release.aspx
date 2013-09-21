@@ -298,7 +298,21 @@
     </div>
     <div id="divInformation" runat="server" visible="true">
         <h1 class="divTitle">Information</h1>   
-        <asp:LinkButton id="EditButton" runat="server" class="EditButton" Text="&nbsp;Edit&nbsp;" CommandName="Edit" OnClick="EditButton_Click" />
+        <asp:LinkButton id="EditButton" runat="server" class="EditButton" Text="&nbsp;Edit&nbsp;" CommandName="Edit" onclick="EditButtonRelease_Click"/>
+            
+            <!-- Panel under Construction aqui no iria un panel, sino que se habilitaria
+                la edicion del formulario.
+                Cuando se habilita la edicion, que debe cambiar el boton a Cancelar, hay que mostrar dos acciones
+                que si que van con div, Cambiar Estado y Asignar a, esto dentro de la opcion que nuestra
+                el estado y el propietario (que tampoco esta hecho)-->
+            <asp:Panel runat="server" id="ModalEditRelease" class="modalDialogUnderConstruction" Visible="false">
+	            <div>
+                    <asp:LinkButton runat="server" id="CloseButton" class="close" OnClick="CloseButtonRelease_Click" CausesValidation="false">X</asp:LinkButton>
+                    <p><img src="images/under_construction_transparentBG_0.png" /></p>
+                </div>
+            </asp:Panel>
+            <!-- Fin Panel under Construction -->
+
         <asp:SqlDataSource ID="SqlDataSourceReleaseInformation" runat="server" ConnectionString="<%$ ConnectionStrings:ApplicationServices%>">
         </asp:SqlDataSource>        
         <table style="width:920px"> 
@@ -539,6 +553,18 @@
                         ConnectionString="<%$ ConnectionStrings:ApplicationServices %>">
                     </asp:SqlDataSource>                    
                     <div id="divRequirements" style="visibility:visible; max-width:920px">
+                        <!-- Panel under Construction Add Release -->
+                        <!-- Aqui mostramos una capa con un grid con varios elementos selecionables en el que aparecen
+                            todas los Requisitos asociados a esta Aplicación cuyo estado es Done = False.
+                            Además tendra la opcion de añadir un nuevo Requisito -->
+                        <asp:LinkButton runat="server" id="AddReleaseButton" class="AddButton" OnClick="AddReleaseButton_Click" CausesValidation="false" Visible="false" >&nbsp;Add&nbsp;</asp:LinkButton>
+                        <asp:Panel runat="server" id="ModalAddRelease" class="modalDialogUnderConstruction" Visible="false">
+	                        <div>
+                                <asp:LinkButton runat="server" id="AddReleaseClose" class="close" OnClick="AddReleaseClose_Click" CausesValidation="false">X</asp:LinkButton>
+                                <p><img src="images/under_construction_transparentBG_0.png" /></p>
+                            </div>
+                        </asp:Panel>
+                        <!-- Fin Panel under Construction -->
                         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" 
                             DataKeyNames="RequirementId" DataSourceID="SqlDataSource3" Width="920px" 
                             AllowSorting="True" CssClass="gridView" onsorting="GridView1_Sorting">                            
@@ -551,12 +577,12 @@
                                 <ItemStyle CssClass="boundfield-hidden"></ItemStyle>
                                 </asp:BoundField>
                                 <asp:BoundField DataField="RequirementName" HeaderText="Name" 
-                                    SortExpression="RequirementName" />
+                                    SortExpression="RequirementName" ItemStyle-Width="300" />
                                 <asp:BoundField DataField="RequirementDescription" HeaderText="Description" 
-                                    SortExpression="RequirementDescription" />
-                                <asp:TemplateField HeaderText="Done">                                    
+                                    SortExpression="RequirementDescription" ItemStyle-Width="550" />
+                                <asp:TemplateField HeaderText="Done" ItemStyle-HorizontalAlign="Center">                                    
                                     <ItemTemplate>
-                                        <asp:CheckBox enabled="false" ID="RequirementDone" runat="server" Checked='<%# ((int)Eval("RequirementDone")) == 1 ? true : false  %>' />
+                                        <asp:CheckBox enabled="false" ID="RequirementDone" runat="server" Checked='<%# ((int)Eval("RequirementDone")) == 1 ? true : false  %>' ItemStyle-Width="20" />
                                     </ItemTemplate>
                                 </asp:TemplateField>                                    
                             </Columns>
@@ -601,31 +627,35 @@
                                 <ItemStyle CssClass="boundfield-hidden"></ItemStyle>
                                 </asp:BoundField>
                                 <asp:BoundField DataField="ErrorCT" HeaderText="CT" 
-                                    SortExpression="ErrorCT" />
+                                    SortExpression="ErrorCT" ItemStyle-Width="70" />
                                 <asp:BoundField DataField="ErrorSpiraId" HeaderText="Spira Id" 
-                                    SortExpression="ErrorSpiraId" />
+                                    SortExpression="ErrorSpiraId" ItemStyle-Width="70" />
                                 <asp:BoundField DataField="ErrorName" HeaderText="Name" 
-                                    SortExpression="ErrorName" />
+                                    SortExpression="ErrorName" ItemStyle-Width="150" />
                                 <asp:BoundField DataField="ErrorDescription" HeaderText="Description" 
-                                    SortExpression="ErrorDescription" />
+                                    SortExpression="ErrorDescription" ItemStyle-Width="250" />
                                 <asp:BoundField DataField="ErrorType" HeaderText="Type" 
-                                    SortExpression="ErrorType" />
+                                    SortExpression="ErrorType" ItemStyle-Width="50" ItemStyle-HorizontalAlign="Right" />
                                 <asp:BoundField DataField="ErrorPriority" HeaderText="Priority" 
-                                    SortExpression="ErrorPriority" />                            
+                                    SortExpression="ErrorPriority" ItemStyle-Width="50" ItemStyle-HorizontalAlign="Right" />                            
                                 <asp:BoundField DataField="ErrorFoundRelease" HeaderText="Found in" 
-                                    SortExpression="ErrorFoundRelease" />
+                                    SortExpression="ErrorFoundRelease" ItemStyle-CssClass="boundfield-hidden" 
+                                    HeaderStyle-CssClass="boundfield-hidden" />
                                 <asp:BoundField DataField="ErrorResolvedRelease" HeaderText="Resolved in" 
-                                    SortExpression="ErrorResolvedRelease" />
+                                    SortExpression="ErrorResolvedRelease" ItemStyle-CssClass="boundfield-hidden" 
+                                    HeaderStyle-CssClass="boundfield-hidden" />
                                 <asp:BoundField DataField="ErrorFoundDate" DataFormatString="{0:dd/MM/yyyy}" HeaderText="Found date" 
-                                    SortExpression="ErrorFoundDate" />
+                                    SortExpression="ErrorFoundDate" ItemStyle-CssClass="boundfield-hidden" 
+                                    HeaderStyle-CssClass="boundfield-hidden" />
                                 <asp:BoundField DataField="ErrorResolvedDate" DataFormatString="{0:dd/MM/yyyy}" HeaderText="Resolved date" 
-                                    SortExpression="ErrorResolvedDate" />
+                                    SortExpression="ErrorResolvedDate" ItemStyle-CssClass="boundfield-hidden" 
+                                    HeaderStyle-CssClass="boundfield-hidden" />
                                 <asp:BoundField DataField="ErrorAffectedClients" HeaderText="Affected clients" 
-                                    SortExpression="ErrorAffectedClients" />
+                                    SortExpression="ErrorAffectedClients" ItemStyle-Width="50" ItemStyle-HorizontalAlign="Right" />
                                 <asp:BoundField DataField="State" HeaderText="State" 
-                                    SortExpression="State" />
+                                    SortExpression="State" ItemStyle-Width="50" ItemStyle-HorizontalAlign="Right" />
                                 <asp:CommandField ShowSelectButton="true" ButtonType="Link" Visible="true"
-                                    SelectText="View" ItemStyle-HorizontalAlign="Center" >                       
+                                    SelectText="<img src='images/Ok.png' />" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="30" >                       
                                 <ItemStyle HorizontalAlign="Center"></ItemStyle>
                                 </asp:CommandField>
                             </Columns>
@@ -670,31 +700,35 @@
                                     <ItemStyle CssClass="boundfield-hidden"></ItemStyle>
                                 </asp:BoundField>
                                 <asp:BoundField DataField="ErrorCT" HeaderText="CT" 
-                                    SortExpression="ErrorCT" />
+                                    SortExpression="ErrorCT" ItemStyle-Width="70" />
                                 <asp:BoundField DataField="ErrorSpiraId" HeaderText="Spira Id" 
-                                    SortExpression="ErrorSpiraId" />
+                                    SortExpression="ErrorSpiraId" ItemStyle-Width="70" />
                                 <asp:BoundField DataField="ErrorName" HeaderText="Name" 
-                                    SortExpression="ErrorName" />
+                                    SortExpression="ErrorName" ItemStyle-Width="150" />
                                 <asp:BoundField DataField="ErrorDescription" HeaderText="Description" 
-                                    SortExpression="ErrorDescription" />
+                                    SortExpression="ErrorDescription" ItemStyle-Width="250" />
                                 <asp:BoundField DataField="ErrorType" HeaderText="Type" 
-                                    SortExpression="ErrorType" />
+                                    SortExpression="ErrorType" ItemStyle-Width="50" ItemStyle-HorizontalAlign="Right" />
                                 <asp:BoundField DataField="ErrorPriority" HeaderText="Priority" 
-                                    SortExpression="ErrorPriority" />                            
+                                    SortExpression="ErrorPriority" ItemStyle-Width="50" ItemStyle-HorizontalAlign="Right" />                            
                                 <asp:BoundField DataField="ErrorFoundRelease" HeaderText="Found in" 
-                                    SortExpression="ErrorFoundRelease" />
+                                    SortExpression="ErrorFoundRelease" ItemStyle-CssClass="boundfield-hidden" 
+                                    HeaderStyle-CssClass="boundfield-hidden"/>
                                 <asp:BoundField DataField="ErrorResolvedRelease" HeaderText="Resolved in" 
-                                    SortExpression="ErrorResolvedRelease" />
+                                    SortExpression="ErrorResolvedRelease" ItemStyle-CssClass="boundfield-hidden" 
+                                    HeaderStyle-CssClass="boundfield-hidden"/>
                                 <asp:BoundField DataField="ErrorFoundDate" DataFormatString="{0:dd/MM/yyyy}" HeaderText="Found date" 
-                                    SortExpression="ErrorFoundDate" />
+                                    SortExpression="ErrorFoundDate" ItemStyle-CssClass="boundfield-hidden" 
+                                    HeaderStyle-CssClass="boundfield-hidden" />
                                 <asp:BoundField DataField="ErrorResolvedDate" DataFormatString="{0:dd/MM/yyyy}" HeaderText="Resolved date" 
-                                    SortExpression="ErrorResolvedDate" />
+                                    SortExpression="ErrorResolvedDate" ItemStyle-CssClass="boundfield-hidden" 
+                                    HeaderStyle-CssClass="boundfield-hidden" />
                                 <asp:BoundField DataField="ErrorAffectedClients" HeaderText="Affected clients" 
-                                    SortExpression="ErrorAffectedClients" />
+                                    SortExpression="ErrorAffectedClients" ItemStyle-Width="50" ItemStyle-HorizontalAlign="Right" />
                                 <asp:BoundField DataField="State" HeaderText="State" 
-                                    SortExpression="State" />
+                                    SortExpression="State" ItemStyle-Width="50" ItemStyle-HorizontalAlign="Right" />
                                 <asp:CommandField ShowSelectButton="true" ButtonType="Link" Visible="true"
-                                    SelectText="View" ItemStyle-HorizontalAlign="Center" >
+                                    SelectText="<img src='images/Ok.png' />" ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="30" >
                                 <ItemStyle HorizontalAlign="Center"></ItemStyle>
                                 </asp:CommandField>
                             </Columns>

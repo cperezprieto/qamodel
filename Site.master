@@ -35,22 +35,22 @@
                 </asp:LoginView>
             </div>
             <div class="clear hideSkiplink">
-                <asp:LoginView ID="LoginView1" runat="server" EnableViewState="false">
+                <asp:LoginView ID="LoginView1" runat="server" EnableViewState="true">
                     <AnonymousTemplate>
-                        <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" 
-                            EnableViewState="False" IncludeStyleBlock="False" Orientation="Horizontal">                                
-                            <Items>
-                                <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Home"/>
-                                <asp:MenuItem NavigateUrl="~/About.aspx" Text="About"/>
-                            </Items>
-                        </asp:Menu>
+                        <!--
+                            <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" 
+                                EnableViewState="False" IncludeStyleBlock="False" Orientation="Horizontal">                                
+                                <Items>
+                                    <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Home"/>
+                                    <asp:MenuItem NavigateUrl="~/About.aspx" Text="About"/>
+                                </Items>
+                            </asp:Menu>
+                        -->
                     </AnonymousTemplate>
                     <LoggedInTemplate>
                         <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" 
-                            EnableViewState="False" IncludeStyleBlock="False" Orientation="Horizontal">                                
+                            EnableViewState="False" IncludeStyleBlock="False" Orientation="Horizontal">                           
                             <Items>
-                                <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Home"/>
-                                <asp:MenuItem NavigateUrl="~/About.aspx" Text="About"/>
                                 <asp:MenuItem NavigateUrl="~/Applications.aspx" Text="Applications" 
                                     Value="Applications">
                                 </asp:MenuItem>

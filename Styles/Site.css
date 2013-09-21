@@ -6,9 +6,14 @@ body
     background: #b6b7bc;
     font-size: .80em;
     font-family: "Helvetica Neue", "Lucida Grande", "Segoe UI", Arial, Helvetica, Verdana, sans-serif;
-    margin: 0px;
+    margin: 0px 0px 0px 0px;
     padding: 0px;
     color: #696969;
+}
+
+body, html
+{
+    height:100%;
 }
 
 a:link, a:visited
@@ -452,6 +457,33 @@ div.accountInfo
 	padding: 2px 2px 2px 2px;
 	border-radius: 6px;
 	background: gray;
+}
+
+/*UNDERCONSTRUCTION*/
+.modalDialogUnderConstruction {
+	position: fixed;
+	font-family: Arial, Helvetica, sans-serif;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	left: 0px;    
+	background: rgba(0,0,0,0.4);
+	z-index: 99999;    
+	opacity:1;
+	-webkit-transition: opacity 400ms ease-in;
+	-moz-transition: opacity 400ms ease-in;
+	transition: opacity 400ms ease-in;
+	pointer-events: all;    
+}
+
+.modalDialogUnderConstruction > div 
+{
+    width: 160px;
+	position: relative;
+	margin: 20% auto;
+	padding: 10px 20px 13px 20px;
+	border-radius: 10px;
+	background: white;    
 }
 
 /*COMMON*/

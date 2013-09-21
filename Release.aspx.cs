@@ -51,18 +51,14 @@ public partial class Release : System.Web.UI.Page
         Response.Redirect("Releases.aspx?&AppId=" + Request.QueryString["AppId"]);
     }
 
-    protected void EditButton_Click(object sender, EventArgs e)
+    protected void EditButtonRelease_Click(object sender, EventArgs e)
     {
-        if(ReleaseFormView.Enabled == false)
-        {
-            ReleaseFormView.Enabled = true;
-            EditButton.Text = "&nbsp;Cancel&nbsp;";
-        }
-        else
-        {
-            ReleaseFormView.Enabled = false;
-            EditButton.Text = "&nbsp;Edit&nbsp;";
-        }
+        ModalEditRelease.Visible = true;
+    }
+
+    protected void CloseButtonRelease_Click(object sender, EventArgs e)
+    {
+        ModalEditRelease.Visible = false;
     }
 
     protected void ReleaseFormView_DataBound(object sender, EventArgs e)
@@ -73,6 +69,7 @@ public partial class Release : System.Web.UI.Page
     protected void colapseAll()
     {
         btViewRequirements.Text = "Show";
+        AddReleaseButton.Visible = false;
         SqlDataSource3.SelectCommand = "";
         GridView1.EmptyDataText = "";
         GridView1.DataBind();
@@ -92,6 +89,7 @@ public partial class Release : System.Web.UI.Page
     {        
         if (btViewRequirements.Text == "Show")
         {
+            AddReleaseButton.Visible = true;
             btViewRequirements.Text = "Hide";
             SqlDataSource3.SelectCommand = "Select * FROM aspnet_Requirements where ReleaseId='" + ListBox1.SelectedValue + "'";
             GridView1.EmptyDataText = "No data";
@@ -99,6 +97,7 @@ public partial class Release : System.Web.UI.Page
         }
         else
         {
+            AddReleaseButton.Visible = false;
             btViewRequirements.Text = "Show";
             SqlDataSource3.SelectCommand = "";
             GridView1.EmptyDataText = "";
@@ -145,7 +144,7 @@ public partial class Release : System.Web.UI.Page
             GridView3.EmptyDataText = "";
             GridView3.DataBind();
         }
-        
+
         MoveBottom();
     }
 
@@ -178,9 +177,8 @@ public partial class Release : System.Web.UI.Page
 
     protected void MoveBottom()
     {
-        string script = @"<script type='text/javascript'>window.scrollTo(0, document.body.scrollHeight);</script>";
-
-        ScriptManager.RegisterStartupScript(this, typeof(Page), "invocarfuncion", script, false);
+        /*string script = @"<script type='text/javascript'>window.scrollTo(0, document.body.scrollHeight);</script>";
+        ScriptManager.RegisterStartupScript(this, typeof(Page), "invocarfuncion", script, false);*/        
     }
     protected void ReleaseMenu_MenuItemClick(object sender, MenuEventArgs e)
     {
@@ -252,6 +250,14 @@ public partial class Release : System.Web.UI.Page
         UserIssuesFoundWeightedByDevelopers_Load(this, e);
         ReleaseTimeDesviation_Load(this, e);
         ReleaseTimeEffortPercentage_Load(this, e);
+    }
+    protected void AddReleaseClose_Click(object sender, EventArgs e)
+    {
+        ModalAddRelease.Visible = false;
+    }
+    protected void AddReleaseButton_Click(object sender, EventArgs e)
+    {
+        ModalAddRelease.Visible = true;
     }
 }
 

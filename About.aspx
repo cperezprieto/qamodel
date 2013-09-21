@@ -8,6 +8,12 @@
         About
     </h2>
     <p>
-        Put content here.
-    </p>
+    </p>   
+    <br />
+    This is an idea originated not  by a single brain but by a group of brains...
+    <h3 style="font-weight:bold;color:rgb(58, 79, 99)">Web Quality Assurance Team</h3>
+
+    <h4 style="font-weight:bold;color:rgb(75, 108, 158)">&nbsp;&nbsp;tecnology</h4>
+
+    <h5 style="font-weight:bold;color:green">&nbsp;&nbsp;sage spain</h5>   
 </asp:Content>

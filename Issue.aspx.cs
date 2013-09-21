@@ -20,19 +20,7 @@ public partial class Issue : System.Web.UI.Page
         else
             Server.Transfer("Release.aspx?RelId=" + Request.QueryString["RelId"] + "&AppId=" + Request.QueryString["AppId"]);
     }
-    protected void btEdit_Click(object sender, EventArgs e)
-    {
-        if(ReleaseFormView.Enabled == false)
-        {
-            ReleaseFormView.Enabled = true;
-            btEdit.Text = "&nbsp;Cancel&nbsp;";
-        }
-        else
-        {
-            ReleaseFormView.Enabled = false;
-            btEdit.Text = "&nbsp;Edit&nbsp;";
-        }
-    }
+    
     protected void ReleaseFormView_DataBound(object sender, EventArgs e)
     {
 
@@ -68,5 +56,13 @@ public partial class Issue : System.Web.UI.Page
         string script = @"<script type='text/javascript'>window.scrollTo(0, document.body.scrollHeight);</script>";
 
         ScriptManager.RegisterStartupScript(this, typeof(Page), "invocarfuncion", script, false);
+    }
+    protected void EditButton_Click(object sender, EventArgs e)
+    {
+        ModalEditIssue.Visible = true;
+    }
+    protected void CloseButton_Click(object sender, EventArgs e)
+    {
+        ModalEditIssue.Visible = false;
     }
 }
