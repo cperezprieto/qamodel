@@ -605,13 +605,13 @@
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" 
             DataKeyNames="ReleaseId" DataSourceID="SqlDataSource2" Width="100%" AllowSorting="true" OnSorting="GridView1_Sorting"
             CssClass="gridView" onselectedindexchanged="GridView1_SelectedIndexChanged" 
-            EmptyDataText="No data">
+            EmptyDataText="No data" OnRowDataBound="GridView1_RowDataBound">
             <Columns>
                 <asp:BoundField DataField="ReleaseId" HeaderText="Id" 
                     SortExpression="ReleaseId"  ItemStyle-CssClass="boundfield-hidden"
                     HeaderStyle-CssClass="boundfield-hidden" />
                 <asp:BoundField DataField="ReleaseName" HeaderText="Name" 
-                    SortExpression="ReleaseName" ItemStyle-Width="400"/>
+                    SortExpression="ReleaseName" ItemStyle-Width="400"/>                
                 <asp:BoundField DataField="State" HeaderText="State" 
                     SortExpression="State" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
                 <asp:BoundField DataField="ReleasedPlannedDate" DataFormatString="{0: dd/MM/yyyy}" HeaderText="Planned Date" 

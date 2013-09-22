@@ -10,7 +10,10 @@ public partial class Release : System.Web.UI.Page
 {    
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        if (!Page.User.Identity.IsAuthenticated)
+        {
+            Response.Redirect("Account/login.aspx");
+        }
     }
     protected void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
     {

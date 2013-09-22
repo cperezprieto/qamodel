@@ -9,10 +9,15 @@ using System.Data;
 public partial class Releases : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
-    {        
+    {
+        if (!Page.User.Identity.IsAuthenticated)
+        {
+            Response.Redirect("Account/login.aspx");
+        }
+
         if (Request.QueryString["AppId"] != null)
-        {            
-            SqlDataSourceApplication.SelectCommand = "SELECT aspnet_Applications.* FROM aspnet_Applications WHERE aspnet_Applications.ApplicationId = '" + Request.QueryString["AppId"] + "'";        
+        {
+            SqlDataSourceApplication.SelectCommand = "SELECT aspnet_Applications.* FROM aspnet_Applications WHERE aspnet_Applications.ApplicationId = '" + Request.QueryString["AppId"] + "'";
         }
     }
 
@@ -26,16 +31,16 @@ public partial class Releases : System.Web.UI.Page
             AddButton.Visible = true;
         }
         else
-        {            
+        {
             SqlDataSourceApplication.SelectCommand = "";
             AddButton.Visible = false;
-        }        
+        }
         SqlDataSource2.SelectCommand = queryString;
         FormViewApplication.ChangeMode(FormViewMode.ReadOnly);
         FormViewApplication.DataBind();
         GridView1.DataBind();
     }
-   
+
     protected void ListBox1_DataBound(object sender, EventArgs e)
     {
         string SourceAppId = Request.QueryString["AppId"];
@@ -54,7 +59,7 @@ public partial class Releases : System.Web.UI.Page
     {
         Server.Transfer("Release.aspx?RelId=" + GridView1.SelectedRow.Cells[0].Text + "&AppId=" + ListBox1.SelectedValue);
     }
-    
+
     protected void btReturn_Click(object sender, EventArgs e)
     {
         Response.Redirect("Applications.aspx");
@@ -69,7 +74,7 @@ public partial class Releases : System.Web.UI.Page
     }
     protected void FormViewApplication_ItemUpdating1(object sender, FormViewUpdateEventArgs e)
     {
-        SqlDataSourceApplication.UpdateCommand = "Update aspnet_Applications SET [ApplicationName] = @ApplicationName, [LoweredApplicationName] = @LoweredApplicationName, [Description] = @Description WHERE [ApplicationId] = '" + ListBox1.SelectedValue + "'";        
+        SqlDataSourceApplication.UpdateCommand = "Update aspnet_Applications SET [ApplicationName] = @ApplicationName, [LoweredApplicationName] = @LoweredApplicationName, [Description] = @Description WHERE [ApplicationId] = '" + ListBox1.SelectedValue + "'";
     }
 
     protected void FormViewApplication_ItemUpdated(object sender, EventArgs e)
@@ -115,7 +120,7 @@ public partial class Releases : System.Web.UI.Page
         SqlDataSourceAppNameCV.SelectCommand = "Select COUNT(ApplicationName) from aspnet_Applications where ApplicationName = '" + args.Value + "' and ApplicationId <> '" + ListBox1.SelectedValue + "'";
 
         DataView dv = (DataView)SqlDataSourceAppNameCV.Select(DataSourceSelectArguments.Empty);
-        
+
         if (dv[0].Row[0].ToString().Equals("0"))
         {
             args.IsValid = true;
@@ -146,7 +151,7 @@ public partial class Releases : System.Web.UI.Page
 
     protected void AddRelease_Load(object sender, EventArgs e)
     {
-        SqlDataSourceAddRelease.InsertCommand=@"INSERT INTO [dbo].[aspnet_Releases]
+        SqlDataSourceAddRelease.InsertCommand = @"INSERT INTO [dbo].[aspnet_Releases]
                 ([ApplicationId]
                 ,[ReleaseName]
                 ,[State]
@@ -220,7 +225,7 @@ public partial class Releases : System.Web.UI.Page
                 ,@ErrorDesP3Unresolved
                 ,@ErrorDesP4Unresolved)";
     }
-    
+
     protected void AddButton_Click(object sender, EventArgs e)
     {
         ModalReleasePanel.Visible = true;
@@ -269,14 +274,32 @@ public partial class Releases : System.Web.UI.Page
 
         if (e.Day.IsOtherMonth)
         {
-            e.Cell.Text = "";            
+            e.Cell.Text = "";
             e.Cell.Attributes.Add("font-underline", "false");
         }
     }
     protected void SqlDataSourceAddRelease_Inserted(object sender, SqlDataSourceStatusEventArgs e)
-    {        
+    {
         SqlDataSource2.SelectCommand = "SELECT aspnet_Releases.* FROM aspnet_Releases where ApplicationId = '" + ListBox1.SelectedValue + "'";
         ModalReleasePanel.Visible = false;
-        AddRelease.DataBind();        
+        AddRelease.DataBind();
+    }
+
+    protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        switch (e.Row.Cells[2].Text)
+        {
+            case "1":
+                e.Row.Cells[2].Text = "Planned";
+                break;
+            case "2":
+                e.Row.Cells[2].Attributes.Add("bgcolor", "Orange");
+                e.Row.Cells[2].Text = "In Progress";
+                break;
+            case "3":
+                e.Row.Cells[2].Attributes.Add("bgcolor", "LightGreen");
+                e.Row.Cells[2].Text = "Released";
+                break;
+        }
     }
 }
