@@ -287,19 +287,23 @@ public partial class Releases : System.Web.UI.Page
 
     protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
     {
-        switch (e.Row.Cells[2].Text)
+        if (e.Row.RowType == DataControlRowType.DataRow)
         {
-            case "1":
-                e.Row.Cells[2].Text = "Planned";
-                break;
-            case "2":
-                e.Row.Cells[2].Attributes.Add("bgcolor", "Orange");
-                e.Row.Cells[2].Text = "In Progress";
-                break;
-            case "3":
-                e.Row.Cells[2].Attributes.Add("bgcolor", "LightGreen");
-                e.Row.Cells[2].Text = "Released";
-                break;
+            switch (e.Row.Cells[2].Text)
+            {
+                case "1":
+                    e.Row.Cells[2].Text = "Planned";
+                    break;
+                case "2":
+                    e.Row.Cells[2].Attributes.Add("bgcolor", "Orange");
+                    e.Row.Cells[2].Text = "In Progress";
+                    break;
+                case "3":
+                    e.Row.Cells[2].Attributes.Add("bgcolor", "LightGreen");
+                    e.Row.Cells[2].Text = "Released";
+                    break;
+            }
         }
+
     }
 }

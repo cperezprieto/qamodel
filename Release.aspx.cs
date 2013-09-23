@@ -262,5 +262,93 @@ public partial class Release : System.Web.UI.Page
     {
         ModalAddRelease.Visible = true;
     }
+    protected void GridView3_RowDataBound(object sender, GridViewRowEventArgs e)
+    {        
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            switch (e.Row.Cells[5].Text)
+            {
+                case "0":
+                    e.Row.Cells[5].Text = "Design";
+                    break;
+                case "1":
+                    e.Row.Cells[5].Text = "Coding";
+                    break;
+            }
+
+            /*switch (e.Row.Cells[6].Text)
+            {
+                case "1":
+                    e.Row.Cells[6].Attributes.Add("bgcolor", "#800517");
+                    break;
+                case "2":
+                    e.Row.Cells[6].Attributes.Add("bgcolor", "#C11B17");
+                    break;
+                case "3":
+                    e.Row.Cells[6].Attributes.Add("bgcolor", "#C11B17");
+                    break;
+                case "4":
+                    e.Row.Cells[6].Attributes.Add("bgcolor", "#F75D59");
+                    break;
+            }*/
+
+            switch (e.Row.Cells[11].Text)
+            {
+                case "0":
+                    e.Row.Cells[11].Text = "Found";
+                    e.Row.Cells[11].Attributes.Add("bgcolor", "Orange");
+                    break;
+                case "1":
+                    e.Row.Cells[11].Text = "Resolved";
+                    e.Row.Cells[11].Attributes.Add("bgcolor", "#348017");
+                    e.Row.Cells[11].Attributes.Add("style", "color:white;border-color:gray");
+                    break;
+            }
+        }    
+    }
+    protected void GridView2_RowDataBound(object sender, GridViewRowEventArgs e)
+    {        
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            switch (e.Row.Cells[5].Text)
+            {
+                case "0":
+                    e.Row.Cells[5].Text = "Design";
+                    break;
+                case "1":
+                    e.Row.Cells[5].Text = "Coding";
+                    break;
+            }
+
+            /*switch (e.Row.Cells[6].Text)
+            {
+                case "1":
+                    e.Row.Cells[6].Attributes.Add("bgcolor", "#800517");
+                    break;
+                case "2":
+                    e.Row.Cells[6].Attributes.Add("bgcolor", "#C11B17");
+                    break;
+                case "3":
+                    e.Row.Cells[6].Attributes.Add("bgcolor", "#C11B17");
+                    break;
+                case "4":
+                    e.Row.Cells[6].Attributes.Add("bgcolor", "#F75D59");
+                    break;
+            }*/
+
+            switch (e.Row.Cells[11].Text)
+            {
+                case "0":
+                    e.Row.Cells[11].Text = "Found";
+                    e.Row.Cells[11].Attributes.Add("bgcolor", "Orange");
+                    break;
+                case "1":
+                    e.Row.Cells[11].Text = "Resolved";
+                    e.Row.Cells[11].Attributes.Add("bgcolor", "#348017");
+                    e.Row.Cells[11].Attributes.Add("style", "color:white;border-color:gray");
+                    break;
+            }
+        }   
+    }
 }
 

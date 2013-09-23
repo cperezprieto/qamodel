@@ -103,45 +103,49 @@ public partial class Issues : System.Web.UI.Page
     {
         ModalAddIssue.Visible = false;        
     }
+    
     protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
     {
-        switch (e.Row.Cells[5].Text)
+        if (e.Row.RowType == DataControlRowType.DataRow)
         {
-            case "0":
-                e.Row.Cells[5].Text = "Design";
-                break;
-            case "1":                
-                e.Row.Cells[5].Text = "Coding";
-                break;            
-        }
+            switch (e.Row.Cells[5].Text)
+            {
+                case "0":
+                    e.Row.Cells[5].Text = "Design";
+                    break;
+                case "1":
+                    e.Row.Cells[5].Text = "Coding";
+                    break;
+            }
 
-        /*switch (e.Row.Cells[6].Text)
-        {
-            case "1":
-                e.Row.Cells[6].Attributes.Add("bgcolor", "#800517");
-                break;
-            case "2":
-                e.Row.Cells[6].Attributes.Add("bgcolor", "#C11B17");
-                break;
-            case "3":
-                e.Row.Cells[6].Attributes.Add("bgcolor", "#C11B17");
-                break;
-            case "4":
-                e.Row.Cells[6].Attributes.Add("bgcolor", "#F75D59");
-                break;
-        }*/
+            /*switch (e.Row.Cells[6].Text)
+            {
+                case "1":
+                    e.Row.Cells[6].Attributes.Add("bgcolor", "#800517");
+                    break;
+                case "2":
+                    e.Row.Cells[6].Attributes.Add("bgcolor", "#C11B17");
+                    break;
+                case "3":
+                    e.Row.Cells[6].Attributes.Add("bgcolor", "#C11B17");
+                    break;
+                case "4":
+                    e.Row.Cells[6].Attributes.Add("bgcolor", "#F75D59");
+                    break;
+            }*/
 
-        switch (e.Row.Cells[7].Text)
-        {
-            case "0":
-                e.Row.Cells[7].Text = "Found";
-                e.Row.Cells[7].Attributes.Add("bgcolor", "Orange");
-                break;
-            case "1":
-                e.Row.Cells[7].Text = "Resolved";
-                e.Row.Cells[7].Attributes.Add("bgcolor", "#348017");
-                e.Row.Cells[7].Attributes.Add("style", "color:white;border-color:gray");
-                break;
+            switch (e.Row.Cells[7].Text)
+            {
+                case "0":
+                    e.Row.Cells[7].Text = "Found";
+                    e.Row.Cells[7].Attributes.Add("bgcolor", "Orange");
+                    break;
+                case "1":
+                    e.Row.Cells[7].Text = "Resolved";
+                    e.Row.Cells[7].Attributes.Add("bgcolor", "#348017");
+                    e.Row.Cells[7].Attributes.Add("style", "color:white;border-color:gray");
+                    break;
+            }
         }
     }
 }

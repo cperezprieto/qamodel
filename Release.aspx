@@ -617,7 +617,7 @@
                         <asp:GridView ID="GridView3" runat="server" AutoGenerateColumns="False" 
                             DataKeyNames="ErrorId" DataSourceID="SqlDataSource5" Width="920px" 
                             AllowSorting="True" CssClass="gridView" onsorting="GridView3_Sorting"
-                            onselectedindexchanged="GridView3_SelectedIndexChanged">
+                            onselectedindexchanged="GridView3_SelectedIndexChanged" OnRowDataBound="GridView3_RowDataBound">
                             <Columns>                
                                 <asp:BoundField DataField="ErrorId" HeaderText="Id" 
                                     SortExpression="ErrorId" Visible="true"  
@@ -635,9 +635,9 @@
                                 <asp:BoundField DataField="ErrorDescription" HeaderText="Description" 
                                     SortExpression="ErrorDescription" ItemStyle-Width="250" />
                                 <asp:BoundField DataField="ErrorType" HeaderText="Type" 
-                                    SortExpression="ErrorType" ItemStyle-Width="50" ItemStyle-HorizontalAlign="Right" />
+                                    SortExpression="ErrorType" ItemStyle-Width="50" ItemStyle-HorizontalAlign="Center" />
                                 <asp:BoundField DataField="ErrorPriority" HeaderText="Priority" 
-                                    SortExpression="ErrorPriority" ItemStyle-Width="50" ItemStyle-HorizontalAlign="Right" />                            
+                                    SortExpression="ErrorPriority" ItemStyle-Width="50" ItemStyle-HorizontalAlign="Center" />                            
                                 <asp:BoundField DataField="ErrorFoundRelease" HeaderText="Found in" 
                                     SortExpression="ErrorFoundRelease" ItemStyle-CssClass="boundfield-hidden" 
                                     HeaderStyle-CssClass="boundfield-hidden" />
@@ -649,11 +649,11 @@
                                     HeaderStyle-CssClass="boundfield-hidden" />
                                 <asp:BoundField DataField="ErrorResolvedDate" DataFormatString="{0:dd/MM/yyyy}" HeaderText="Resolved date" 
                                     SortExpression="ErrorResolvedDate" ItemStyle-CssClass="boundfield-hidden" 
-                                    HeaderStyle-CssClass="boundfield-hidden" />
+                                    HeaderStyle-CssClass="boundfield-hidden" />                                
+                                <asp:BoundField DataField="State" HeaderText="State" 
+                                    SortExpression="State" ItemStyle-Width="70" ItemStyle-HorizontalAlign="Center" />
                                 <asp:BoundField DataField="ErrorAffectedClients" HeaderText="Affected clients" 
                                     SortExpression="ErrorAffectedClients" ItemStyle-Width="50" ItemStyle-HorizontalAlign="Right" />
-                                <asp:BoundField DataField="State" HeaderText="State" 
-                                    SortExpression="State" ItemStyle-Width="50" ItemStyle-HorizontalAlign="Right" />
                                 <asp:CommandField ShowSelectButton="true" ButtonType="Link" Visible="true"
                                     SelectText="<img src='images/Ok.png' />" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="30" >                       
                                 <ItemStyle HorizontalAlign="Center"></ItemStyle>
@@ -690,7 +690,7 @@
                         <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" 
                             DataKeyNames="ErrorId" DataSourceID="SqlDataSource4" Width="920px" 
                             AllowSorting="True" CssClass="gridView" onsorting="GridView2_Sorting"
-                            onselectedindexchanged="GridView2_SelectedIndexChanged">                            
+                            onselectedindexchanged="GridView2_SelectedIndexChanged" OnRowDataBound="GridView2_RowDataBound">                            
                             <Columns>                
                                 <asp:BoundField DataField="ErrorId" HeaderText="Id" 
                                     SortExpression="ErrorId" Visible="true"  
@@ -708,9 +708,9 @@
                                 <asp:BoundField DataField="ErrorDescription" HeaderText="Description" 
                                     SortExpression="ErrorDescription" ItemStyle-Width="250" />
                                 <asp:BoundField DataField="ErrorType" HeaderText="Type" 
-                                    SortExpression="ErrorType" ItemStyle-Width="50" ItemStyle-HorizontalAlign="Right" />
+                                    SortExpression="ErrorType" ItemStyle-Width="50" ItemStyle-HorizontalAlign="Center" />
                                 <asp:BoundField DataField="ErrorPriority" HeaderText="Priority" 
-                                    SortExpression="ErrorPriority" ItemStyle-Width="50" ItemStyle-HorizontalAlign="Right" />                            
+                                    SortExpression="ErrorPriority" ItemStyle-Width="50" ItemStyle-HorizontalAlign="Center" />                            
                                 <asp:BoundField DataField="ErrorFoundRelease" HeaderText="Found in" 
                                     SortExpression="ErrorFoundRelease" ItemStyle-CssClass="boundfield-hidden" 
                                     HeaderStyle-CssClass="boundfield-hidden"/>
@@ -722,11 +722,11 @@
                                     HeaderStyle-CssClass="boundfield-hidden" />
                                 <asp:BoundField DataField="ErrorResolvedDate" DataFormatString="{0:dd/MM/yyyy}" HeaderText="Resolved date" 
                                     SortExpression="ErrorResolvedDate" ItemStyle-CssClass="boundfield-hidden" 
-                                    HeaderStyle-CssClass="boundfield-hidden" />
+                                    HeaderStyle-CssClass="boundfield-hidden" />                                
+                                <asp:BoundField DataField="State" HeaderText="State" 
+                                    SortExpression="State" ItemStyle-Width="70" ItemStyle-HorizontalAlign="Center" />
                                 <asp:BoundField DataField="ErrorAffectedClients" HeaderText="Affected clients" 
                                     SortExpression="ErrorAffectedClients" ItemStyle-Width="50" ItemStyle-HorizontalAlign="Right" />
-                                <asp:BoundField DataField="State" HeaderText="State" 
-                                    SortExpression="State" ItemStyle-Width="50" ItemStyle-HorizontalAlign="Right" />
                                 <asp:CommandField ShowSelectButton="true" ButtonType="Link" Visible="true"
                                     SelectText="<img src='images/Ok.png' />" ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="30" >
                                 <ItemStyle HorizontalAlign="Center"></ItemStyle>
