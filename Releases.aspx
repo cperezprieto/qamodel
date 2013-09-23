@@ -233,9 +233,9 @@
                                         <td>                            
                                             <asp:ListBox id="State" Rows="1" runat="server" Text='<%# Bind("State") %>'>
                                                 <asp:ListItem Text="" Value="" />
-                                                <asp:ListItem Text="Active" Value="1" />
+                                                <asp:ListItem Text="Planned" Value="1" />
                                                 <asp:ListItem Text="In Progress" Value="2" />
-                                                <asp:ListItem Text="Closed" Value="3" />
+                                                <asp:ListItem Text="Released" Value="3" />
                                             </asp:ListBox>                                            
                                             <asp:RequiredFieldValidator runat="server"
                                                 ControlToValidate="State"

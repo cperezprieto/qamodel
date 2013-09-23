@@ -230,11 +230,7 @@
                     </asp:SqlDataSource>
                     <asp:Chart ID="ReleaseTimeEffortPercentage" runat="server" Width="908px" Height="250" 
                         DataSourceID="SqlDataSourceReleaseTimeEffortPercentage" BorderlineWidth="1" BorderlineDashStyle="Solid" BorderlineColor="DarkGray" 
-                        onload="ReleaseTimeEffortPercentage_Load">
-                        <Legends>
-                            <asp:Legend Name="Legend1" LegendStyle="Row" Alignment="Center" Docking="Top" >
-                            </asp:Legend>
-                        </Legends>
+                        onload="ReleaseTimeEffortPercentage_Load">                        
                         <Titles>
                             <asp:Title Text="Time Effort Percentage"  ForeColor="#CCCCCC" BackColor="#465C71"
                                 Docking="Top" Alignment="TopCenter"/>
@@ -243,13 +239,13 @@
                             <asp:Title Text="Release" ForeColor="DarkGray" Docking="Bottom" DockedToChartArea="ChartArea3" IsDockedInsideChartArea="false" />
                         </Titles>                        
                         <Series>
-                            <asp:Series ChartArea="ChartArea1" ChartType="Pie" Legend="Legend1" Name="All Applications" IsValueShownAsLabel="True"
+                            <asp:Series ChartArea="ChartArea1" ChartType="Pie" Legend="Legend1" Name="All Applications" IsValueShownAsLabel="False"
                                 LabelForeColor="DarkGray" XValueMember="ENVIRONMENT" YValueMembers="All Applications" IsVisibleInLegend="True" ToolTip="">
                             </asp:Series>
-                            <asp:Series ChartArea="ChartArea2" ChartType="Pie" Legend="Legend1" Name="Application" IsValueShownAsLabel="True"
+                            <asp:Series ChartArea="ChartArea2" ChartType="Pie" Legend="Legend1" Name="Application" IsValueShownAsLabel="False"
                                 LabelForeColor="DarkGray" XValueMember="ENVIRONMENT" YValueMembers="Application" IsVisibleInLegend="False">
                             </asp:Series>
-                            <asp:Series ChartArea="ChartArea3" ChartType="Pie" Legend="Legend1" Name="Release" IsValueShownAsLabel="True"
+                            <asp:Series ChartArea="ChartArea3" ChartType="Pie" Legend="Legend1" Name="Release" IsValueShownAsLabel="False"
                                 LabelForeColor="DarkGray" XValueMember="ENVIRONMENT" YValueMembers="Release" IsVisibleInLegend="False">
                             </asp:Series>
                         </Series>
@@ -334,12 +330,18 @@
                                         <table>                                            
                                             <tr>
                                                 <td class="textBoxLabel">Release Name:</td>
-                                                <td><asp:TextBox id="ReleaseName" runat="server" Text='<%# Eval("ReleaseName") %>' BorderStyle="NotSet" /></td>
+                                                <td>
+                                                    <asp:TextBox id="ReleaseName" runat="server" Text='<%# Eval("ReleaseName") %>' BorderStyle="NotSet" />
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td class="textBoxLabel">State:</td>
                                                 <td>                            
-                                                    <asp:TextBox id="State" runat="server" Text='<%# Eval("State") %>' CausesValidation="False" />
+                                                    <asp:DropDownList id="State" runat="server" SelectedValue='<%# Eval("State") %>' CausesValidation="False" Rows="1">                                                        
+                                                        <asp:ListItem Text="Planned" Value="1" />
+                                                        <asp:ListItem Text="In Progress" Value="2" />
+                                                        <asp:ListItem Text="Released" Value="3" />                                                     
+                                                    </asp:DropDownList>
                                                 </td>
                                             </tr>
                                             <tr>
